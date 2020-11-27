@@ -22,11 +22,11 @@ public class BypassCommand {
 
                 if (!main.adminsBypassingProtections.contains(player.getUniqueId())) {
                     main.adminsBypassingProtections.add(player.getUniqueId());
-                    player.sendMessage(ChatColor.GREEN + "You are now bypassing protections provided by Medieval Factions.");
+                    player.sendMessage(ChatColor.GREEN + "Теперь вы обходите защиту, обеспечиваемую средневековыми фракциями.");
                 }
                 else {
                     main.adminsBypassingProtections.remove(player.getUniqueId());
-                    player.sendMessage(ChatColor.GREEN + "You are no longer bypassing protections provided by Medieval Factions.");
+                    player.sendMessage(ChatColor.GREEN + "Вы больше не обходите защиту, обеспечиваемую средневековыми фракциями.");
                 }
 
             }
