@@ -42,18 +42,18 @@ public class BreakAllianceCommand {
                                     if ((faction.isAlly(factionName))) {
                                         // remove alliance
                                         faction.removeAlly(factionName);
-                                        player.sendMessage(ChatColor.GREEN + "Alliance has been broken with " + factionName + "!");
+                                        player.sendMessage(ChatColor.GREEN + "▎Альянс был разорван с" + factionName + "!");
 
                                         // add declarer's faction to new enemy's enemyList
                                         main.factions.get(i).removeAlly(faction.getName());
                                         for (int j = 0; j < main.factions.size(); j++) {
                                             if (main.factions.get(j).getName().equalsIgnoreCase(factionName)) {
-                                                sendAllPlayersInFactionMessage(main.factions.get(j), ChatColor.RED + faction.getName() + " has broken their alliance your faction!");
+                                                sendAllPlayersInFactionMessage(main.factions.get(j), ChatColor.RED + faction.getName() + " разорвал свой союз с вашей фракцией");
                                             }
                                         }
                                     }
                                     else {
-                                        player.sendMessage(ChatColor.RED + "Your faction is not allied with " + factionName);
+                                        player.sendMessage(ChatColor.RED + "▎Ваша фракция не состоит в союзе с" + factionName);
                                     }
 
                                 }
