@@ -23,15 +23,15 @@ public class ChatCommand {
                 if (isInFaction(player.getUniqueId(), main.factions)) {
                     if (!main.playersInFactionChat.contains(player.getUniqueId())) {
                         main.playersInFactionChat.add(player.getUniqueId());
-                        player.sendMessage(ChatColor.GREEN + "You are now speaking in faction chat!");
+                        player.sendMessage(ChatColor.GREEN + "Ты теперь говоришь в чат фракции!");
                     }
                     else {
                         main.playersInFactionChat.remove(player.getUniqueId());
-                        player.sendMessage(ChatColor.GREEN + "You are no longer in faction chat!");
+                        player.sendMessage(ChatColor.GREEN + "Ты больше не в чате фракции!");
                     }
                 }
                 else {
-                    player.sendMessage(ChatColor.RED + "You must be in a faction to use this command!");
+                    player.sendMessage(ChatColor.RED + "Ты должен состоять в фракции чтобы использовать это!");
                 }
 
             }
