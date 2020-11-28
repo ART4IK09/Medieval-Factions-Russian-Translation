@@ -25,7 +25,7 @@ public class CreateCommand {
             // player membership check
             for (Faction faction : main.factions) {
                 if (faction.isMember(player.getUniqueId())) {
-                    player.sendMessage(ChatColor.RED + "Sorry, you're already in a faction. Leave if you want to create a different one.");
+                    player.sendMessage(ChatColor.RED + "Извините, вы уже во фракции. Оставьте, если хотите создать другой.");
                     return false;
                 }
             }
@@ -57,13 +57,13 @@ public class CreateCommand {
                     return true;
                 }
                 else {
-                    player.sendMessage(ChatColor.RED + "Sorry! That faction already exists.");
+                    player.sendMessage(ChatColor.RED + "Сожалею! Эта фракция уже существует.");
                     return false;
                 }
             } else {
 
                 // wrong usage
-                sender.sendMessage(ChatColor.RED + "Usage: /mf create [faction-name]");
+                sender.sendMessage(ChatColor.RED + "Использование: /mf create [имя фракции]");
                 return false;
             }
         }
