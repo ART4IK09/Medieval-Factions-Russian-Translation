@@ -33,17 +33,17 @@ public class DescCommand {
                         }
 
                         faction.setDescription(newDesc);
-                        player.sendMessage(ChatColor.AQUA + "Description set!");
+                        player.sendMessage(ChatColor.AQUA + "Описание установлено!");
                         return true;
                     }
                     else {
-                        player.sendMessage(ChatColor.RED + "Usage: /mf desc (description)");
+                        player.sendMessage(ChatColor.RED + "Использовние: /mf desc (описание)");
                         return false;
                     }
                 }
             }
             if (!owner) {
-                player.sendMessage(ChatColor.RED + "You need to be the owner of a faction to use this command.");
+                player.sendMessage(ChatColor.RED + "Чтобы использовать эту команду, вы должны быть владельцем фракции.");
                 return false;
             }
         }
