@@ -31,10 +31,10 @@ public class CheckAccessCommand {
 
             if (!main.playersCheckingAccess.contains(player.getUniqueId())) {
                 main.playersCheckingAccess.add(player.getUniqueId());
-                player.sendMessage(ChatColor.GREEN + "Right click a locked block to check who has access to it! Type '/mf checkaccess cancel' to cancel!");
+                player.sendMessage(ChatColor.GREEN + "Щелкните правой кнопкой мыши заблокированный блок, чтобы проверить, кто имеет к нему доступ! Введите '/ mf checkaccess cancel', чтобы отменить");
             }
             else {
-                player.sendMessage(ChatColor.RED + "You have already entered this command! Type '/mf checkaccess cancel' to cancel!");
+                player.sendMessage(ChatColor.RED + "Вы уже ввели эту команду! Введите '/ mf checkaccess cancel' для отмены!");
             }
 
         }
