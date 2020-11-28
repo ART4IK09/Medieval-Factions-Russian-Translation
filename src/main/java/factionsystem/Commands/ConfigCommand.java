@@ -43,21 +43,21 @@ public class ConfigCommand {
                             return;
                         }
                         else {
-                            player.sendMessage(ChatColor.RED + "Usage: /mf config set (option) (value)");
+                            player.sendMessage(ChatColor.RED + "Использование: /mf config set (опция) (значение)");
                             return;
                         }
 
                     }
 
-                    player.sendMessage(ChatColor.RED + "Valid sub-commands: show, set");
+                    player.sendMessage(ChatColor.RED + "Допустимые подкоманды: show, set");
 
                 }
                 else {
-                    player.sendMessage(ChatColor.RED + "Valid sub-commands: show, set");
+                    player.sendMessage(ChatColor.RED + "Допустимые подкоманды: show, set");
                 }
             }
             else {
-                player.sendMessage(ChatColor.RED + "Sorry! In order to use this command, you need the following permission: 'mf.config'");
+                player.sendMessage(ChatColor.RED + "Сожалею! Чтобы использовать эту команду, вам необходимо следующее разрешение: 'mf.config'");
             }
         }
 
