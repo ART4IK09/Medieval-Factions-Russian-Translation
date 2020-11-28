@@ -42,20 +42,20 @@ public class DeclareIndependenceCommand {
                                 // add declarer's faction to new enemy's enemyList
                                 targetFaction.addEnemy(playersFaction.getName());
 
-                                main.utilities.sendAllPlayersOnServerMessage(ChatColor.RED + playersFaction.getName() + " has declared independence from " + targetFaction.getName() + "!");
+                                main.utilities.sendAllPlayersOnServerMessage(ChatColor.RED + playersFaction.getName() + " провозгласил независимость от " + targetFaction.getName() + "!");
                            }
                             else {
                                 // tell player they must be owner
-                                player.sendMessage(ChatColor.RED + "Sorry, you must be the owner of a faction to use this command!");
+                                player.sendMessage(ChatColor.RED + "Извините, вы должны быть владельцем фракции, чтобы использовать эту команду!");
                             }
 
                         }
                         else {
-                            player.sendMessage(ChatColor.RED + "You aren't a vassal of a faction!");
+                            player.sendMessage(ChatColor.RED + "Вы не вассал фракции!");
                         }
                     }
                     else {
-                        player.sendMessage(ChatColor.RED + "Sorry! You must be in a faction to use this command!");
+                        player.sendMessage(ChatColor.RED + "Сожалею! Чтобы использовать эту команду, вы должны принадлежать к фракции!");
                     }
 
             }
