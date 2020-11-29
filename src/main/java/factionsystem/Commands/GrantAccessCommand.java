@@ -24,7 +24,7 @@ public class GrantAccessCommand {
 
                 // if args[1] is cancel, cancel this
                 if (args[1].equalsIgnoreCase("cancel")) {
-                    player.sendMessage(ChatColor.GREEN + "Command cancelled!");
+                    player.sendMessage(ChatColor.GREEN + "Команда отменена!");
                     return;
                 }
 
@@ -32,14 +32,14 @@ public class GrantAccessCommand {
                 if (!main.playersGrantingAccess.containsKey(player.getUniqueId())) {
                     // save target name and player name in hashmap in main
                     main.playersGrantingAccess.put(player.getUniqueId(), findUUIDBasedOnPlayerName(args[1]));
-                    player.sendMessage(ChatColor.GREEN + "Right click a chest or door to grant " + args[1] + " access. Type /mf grantaccess cancel to cancel this.");
+                    player.sendMessage(ChatColor.GREEN + "Щелкните правой кнопкой мыши сундук или дверь, чтобы получить " + args[1] + " доступ. Введите / mf grantaccess cancel, чтобы отменить это.");
                 }
                 else {
-                    player.sendMessage(ChatColor.RED + "You are already granting access to someone! Type /mf grantaccess cancel to cancel this.");
+                    player.sendMessage(ChatColor.RED + "Вы уже предоставляете кому-то доступ! Введите / mf grantaccess cancel, чтобы отменить это.");
                 }
             }
             else {
-                player.sendMessage(ChatColor.RED + "Usage: /grantaccess (player-name)");
+                player.sendMessage(ChatColor.RED + "Использовние: /grantaccess (имя игрока)");
             }
 
         }
