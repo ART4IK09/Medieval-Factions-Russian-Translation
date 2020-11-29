@@ -216,7 +216,7 @@ public class UtilitySubsystem {
         	Gate gate = gtr.next();
         	if (isGateInChunk(gate, chunk))
         	{
-        		System.out.println("Removing gate " + gate.getName());
+//        		System.out.println("Removing gate " + gate.getName());
         		faction.removeGate(gate);
         		gtr.remove();
         	}
@@ -390,13 +390,13 @@ public class UtilitySubsystem {
     }
 
     public void schedulePowerIncrease() {
-        System.out.println("Scheduling hourly power increase...");
+        System.out.println("Scheduling power increase...");
         int delay = main.getConfig().getInt("minutesBeforeInitialPowerIncrease") * 60; // 30 minutes
         int secondsUntilRepeat = main.getConfig().getInt("minutesBetweenPowerIncreases") * 60; // 1 hour
         Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
             @Override
             public void run() {
-                System.out.println("Medieval Factions is increasing the power of every player by " + main.getConfig().getInt("powerIncreaseAmount") + " if their power is below " + main.getConfig().getInt("initialMaxPowerLevel") + ". This will happen every " + main.getConfig().getInt("minutesBetweenPowerIncreases") + " minutes.");
+                System.out.println("Medieval Factions is increasing the power of every player by " + main.getConfig().getInt("powerIncreaseAmount") + ". This will happen every " + main.getConfig().getInt("minutesBetweenPowerIncreases") + " minutes.");
                 for (PlayerPowerRecord powerRecord : main.playerPowerRecords) {
                     try {
                         if (powerRecord.getPowerLevel() < powerRecord.maxPower()) {
@@ -420,7 +420,7 @@ public class UtilitySubsystem {
     	Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable () {
     		@Override
     		public void run() {
-    			System.out.println("Medieval Factions is decreasing the power of every player by " + main.getConfig().getInt("powerDecreaseAmount") + ". This will happen every " + main.getConfig().getInt("minutesBetweenPowerDecreases") + " minutes.");
+    			System.out.println("Medieval Factions is decreasing the power of every player by " + main.getConfig().getInt("powerDecreaseAmount") + " if they haven't been online in over " + main.getConfig().getInt("minutesBeforePowerDecrease") + " minutes. This will happen every " + main.getConfig().getInt("minutesBetweenPowerDecreases") + " minutes.");
     			
     			for (PlayerActivityRecord record : main.playerActivityRecords)
     			{
@@ -438,6 +438,10 @@ public class UtilitySubsystem {
     					power.decreasePower();
     				}
     			}
+
+    			if (main.getConfig().getBoolean("zeroPowerFactionsGetDisbanded")) {
+    			    disbandAllZeroPowerFactions();
+                }
     			
     			for (Player player : main.getServer().getOnlinePlayers())
     			{
@@ -445,6 +449,53 @@ public class UtilitySubsystem {
     			}
     		}
     	}, delay * 20, secondsUntilRepeat * 20);
+    }
+
+    public void disbandAllZeroPowerFactions() {
+        ArrayList<String> factionsToDisband = new ArrayList<>();
+        for (Faction faction : main.factions) {
+            if (faction.getCumulativePowerLevel() == 0) {
+                factionsToDisband.add(faction.getName());
+            }
+        }
+        for (String factionName : factionsToDisband) {
+            sendAllPlayersInFactionMessage(getFaction(factionName, main.factions), ChatColor.RED + "Your faction has been disbanded due to its cumulative power reaching zero.");
+            removeFaction(factionName);
+            System.out.println(factionName + " has been disbanded due to its cumulative power reaching zero.");
+        }
+    }
+
+    public void removeFaction(String name) {
+
+        Faction factionToRemove = getFaction(name, main.factions);
+
+        if (factionToRemove != null) {
+            // remove claimed land objects associated with this faction
+            removeAllClaimedChunks(factionToRemove.getName(), main.claimedChunks);
+
+            // remove locks associated with this faction
+            removeAllLocks(factionToRemove.getName(), main.lockedBlocks);
+
+            // remove records of alliances/wars associated with this faction
+            for (Faction faction : main.factions) {
+                if (faction.isAlly(factionToRemove.getName())) {
+                    faction.removeAlly(factionToRemove.getName());
+                }
+                if (faction.isEnemy(factionToRemove.getName())) {
+                    faction.removeEnemy(factionToRemove.getName());
+                }
+            }
+
+            int index = -1;
+            for (int i = 0; i < main.factions.size(); i++) {
+                if (main.factions.get(i).getName().equalsIgnoreCase(name)) {
+                    index = i;
+                }
+            }
+            if (index != -1) {
+                main.factions.remove(index);
+            }
+        }
     }
     
     public boolean isFactionExceedingTheirDemesneLimit(Faction faction) {
@@ -1122,7 +1173,7 @@ public class UtilitySubsystem {
             }
 
             toReturn.add(argumentString.substring(start + 1, end));
-            System.out.println("DEBUG: argument '" + toReturn.get(toReturn.size() - 1) + "' found!");
+//            System.out.println("DEBUG: argument '" + toReturn.get(toReturn.size() - 1) + "' found!");
             index = end + 1;
         }
 
@@ -1134,7 +1185,7 @@ public class UtilitySubsystem {
         for (int i = startingIndex; i < argumentString.length(); i++) {
 
             if (argumentString.charAt(i) == '\'') {
-                System.out.println("DEBUG: first index of a single quote character in '" + argumentString + "' is " + i);
+//                System.out.println("DEBUG: first index of a single quote character in '" + argumentString + "' is " + i);
                 return i;
             }
 

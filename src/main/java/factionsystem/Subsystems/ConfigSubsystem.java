@@ -119,6 +119,13 @@ public class ConfigSubsystem {
             main.getConfig().addDefault("surroundedChunksProtected", true);
         }
 
+        if (!main.getConfig().isBoolean("zeroPowerFactionsGetDisbanded")) {
+            System.out.println("zeroPowerFactionsGetDisbanded not set! Setting to default!");
+            main.getConfig().addDefault("zeroPowerFactionsGetDisbanded", false);
+        }
+
+
+
         deleteOldConfigOptionsIfPresent();
 
         main.getConfig().options().copyDefaults(true);
@@ -164,16 +171,15 @@ public class ConfigSubsystem {
             {
                 main.getConfig().set(option, Integer.parseInt(value));
                 player.sendMessage(ChatColor.GREEN + "Integer set!");
-                return;
             }
             else if (option.equalsIgnoreCase("mobsSpawnInFactionTerritory")
                     || option.equalsIgnoreCase("laddersPlaceableInEnemyFactionTerritory")
                     || option.equalsIgnoreCase("warsRequiredForPVP")
                     || option.equalsIgnoreCase("powerDecreases")
-                    || option.equalsIgnoreCase("surroundedChunksProtected")) {
+                    || option.equalsIgnoreCase("surroundedChunksProtected")
+                    || option.equalsIgnoreCase("zeroPowerFactionsGetDisbanded")) {
                 main.getConfig().set(option, Boolean.parseBoolean(value));
                 player.sendMessage(ChatColor.GREEN + "Boolean set!");
-                return;
             }
             else if (option.equalsIgnoreCase("factionOwnerMultiplier")
                     || option.equalsIgnoreCase("factionOfficerMultiplier")){
@@ -187,6 +193,9 @@ public class ConfigSubsystem {
 
             // save
             main.saveConfig();
+        }
+        else {
+            player.sendMessage(ChatColor.RED + "'" + option + "' wasn't found.");
         }
 
     }
@@ -212,6 +221,7 @@ public class ConfigSubsystem {
         main.getConfig().addDefault("factionMaxNumberGates", 5);
         main.getConfig().addDefault("factionMaxGateArea", 64);
         main.getConfig().addDefault("surroundedChunksProtected", true);
+        main.getConfig().addDefault("zeroPowerFactionsGetDisbanded", false);
         main.getConfig().options().copyDefaults(true);
         main.saveConfig();
     }
@@ -236,7 +246,8 @@ public class ConfigSubsystem {
                 + ", factionMaxNameLength: " + main.getConfig().getInt("factionMaxNameLength")
 		        + ", factionMaxNumberGates: " + main.getConfig().getInt("factionMaxNumberGates")
 		        + ", factionMaxGateArea: " + main.getConfig().getInt("factionMaxGateArea")
-                + ", surroundedChunksProtected: " + main.getConfig().getBoolean("surroundedChunksProtected"));
+                + ", surroundedChunksProtected: " + main.getConfig().getBoolean("surroundedChunksProtected")
+                + ", zeroPowerFactionsGetDisbanded: " + main.getConfig().getBoolean("zeroPowerFactionsGetDisbanded"));
     }
 
 }
