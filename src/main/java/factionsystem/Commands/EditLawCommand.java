@@ -35,18 +35,18 @@ public class EditLawCommand {
                         }
 
                         if (playersFaction.editLaw(lawToEdit, newLaw)) {
-                            player.sendMessage(ChatColor.GREEN + "Law " + (lawToEdit + 1) + " edited!");
+                            player.sendMessage(ChatColor.GREEN + "Закон " + (lawToEdit + 1) + " отредактирован!");
                         }
                     }
                     else {
-                        player.sendMessage(ChatColor.RED + "Usage: /mf editlaw (number) (edited law)");
+                        player.sendMessage(ChatColor.RED + "Использование: /mf editlaw (номер) (закон)");
                     }
 
                 }
 
             }
             else {
-                player.sendMessage(ChatColor.RED + "You need to be in a faction to use this command!");
+                player.sendMessage(ChatColor.RED + "Чтобы использовать эту команду, вы должны быть во фракции!");
             }
         }
         else {
