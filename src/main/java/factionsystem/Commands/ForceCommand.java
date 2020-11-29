@@ -50,38 +50,38 @@ public class ForceCommand {
             }
         }
         // show usages
-        sender.sendMessage(ChatColor.RED + "Sub-commands:");
+        sender.sendMessage(ChatColor.RED + "Подкоманды:");
         sender.sendMessage(ChatColor.RED + "/mf force save");
         sender.sendMessage(ChatColor.RED + "/mf force load");
-        sender.sendMessage(ChatColor.RED + "/mf force peace 'faction1' 'faction2'");
-        sender.sendMessage(ChatColor.RED + "/mf force demote (player)");
-        sender.sendMessage(ChatColor.RED + "/mf force join 'player' 'faction2'");
-        sender.sendMessage(ChatColor.RED + "/mf force kick (player)");
-        sender.sendMessage(ChatColor.RED + "/mf force power 'player' 'number'");
+        sender.sendMessage(ChatColor.RED + "/mf force peace 'фракция1' 'фракция'");
+        sender.sendMessage(ChatColor.RED + "/mf force demote (игрок)");
+        sender.sendMessage(ChatColor.RED + "/mf force join 'игрок' 'фракция2'");
+        sender.sendMessage(ChatColor.RED + "/mf force kick (игрок)");
+        sender.sendMessage(ChatColor.RED + "/mf force power 'игрок' 'номер'");
         return false;
     }
 
     private boolean forceSave(CommandSender sender) {
         if (sender.hasPermission("mf.force.save") || sender.hasPermission("mf.force.*") || sender.hasPermission("mf.admin")) {
-            sender.sendMessage(ChatColor.GREEN + "Medieval Factions plugin is saving...");
+            sender.sendMessage(ChatColor.GREEN + "Плагин Medieval Factions сохраняет...");
             main.storage.save();
             return true;
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.save'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.save'");
             return false;
         }
     }
 
     private boolean forceLoad(CommandSender sender) {
         if (sender.hasPermission("mf.force.load") || sender.hasPermission("mf.force.*")|| sender.hasPermission("mf.admin")) {
-            sender.sendMessage(ChatColor.GREEN + "Medieval Factions plugin is loading...");
+            sender.sendMessage(ChatColor.GREEN + "Плагин Medieval Factions загружается...");
             main.storage.load();
             main.reloadConfig();
             return true;
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.load'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.load'");
             return false;
         }
     }
@@ -96,7 +96,7 @@ public class ForceCommand {
                 ArrayList<String> singleQuoteArgs = main.utilities.getArgumentsInsideSingleQuotes(args);
 
                 if (singleQuoteArgs.size() < 2) {
-                    sender.sendMessage(ChatColor.RED + "No factions designated. Must be designated inside single quotes!");
+                    sender.sendMessage(ChatColor.RED + "Фракции не определены. Обязательно заключать в одинарные кавычки!");
                     return false;
                 }
 
@@ -116,21 +116,21 @@ public class ForceCommand {
                     }
 
                     // announce peace to all players on server.
-                    main.utilities.sendAllPlayersOnServerMessage(ChatColor.GREEN + faction1.getName() + " is now at peace with " + faction2.getName() + "!");
+                    main.utilities.sendAllPlayersOnServerMessage(ChatColor.GREEN + faction1.getName() + " теперь в мире с " + faction2.getName() + "!");
                     return true;
                 }
                 else {
-                    sender.sendMessage(ChatColor.RED + "One of the factions designated wasn't found!");
+                    sender.sendMessage(ChatColor.RED + "Одна из обозначенных фракций не найдена!");
                     return false;
                 }
             }
 
             // send usage
-            sender.sendMessage(ChatColor.RED + "Usage: /mf force peace 'faction-1' 'faction-2'");
+            sender.sendMessage(ChatColor.RED + "Использование: /mf force peace 'фракция-1' 'фракция-2'");
             return false;
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.peace'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.peace'");
             return false;
         }
 
@@ -147,23 +147,23 @@ public class ForceCommand {
                                 faction.removeOfficer(player.getUniqueId());
 
                                 if (player.isOnline()) {
-                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "You were forcibly demoted from officer status in the faction " + faction.getName() + "!");
+                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "Вас принудительно понижают в звании офицера фракции " + faction.getName() + "!");
                                 }
                             }
                         }
                     }
                 }
 
-                sender.sendMessage(ChatColor.GREEN + "Success! If player was considered an officer in any faction, they are no longer.");
+                sender.sendMessage(ChatColor.GREEN + "Успех! Если игрок считался офицером какой-либо фракции, он больше не им.");
                 return true;
             }
             else {
-                sender.sendMessage(ChatColor.RED + "Usage: /mf force demote (player)");
+                sender.sendMessage(ChatColor.RED + "Использование: /mf force demote (игрок)");
                 return false;
             }
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.demote'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.demote'");
             return false;
         }
     }
@@ -177,7 +177,7 @@ public class ForceCommand {
                 ArrayList<String> singleQuoteArgs = main.utilities.getArgumentsInsideSingleQuotes(args);
 
                 if (singleQuoteArgs.size() < 2) {
-                    sender.sendMessage(ChatColor.RED + "Not enough arguments designated. Must be designated inside single quotes!");
+                    sender.sendMessage(ChatColor.RED + "Обозначено недостаточно аргументов. Должен быть заключен в одинарные кавычки!");
                     return false;
                 }
 
@@ -193,37 +193,37 @@ public class ForceCommand {
                             if (!(isInFaction(player.getUniqueId(), main.factions))) {
                                 faction.addMember(player.getUniqueId(), getPlayersPowerRecord(player.getUniqueId(), main.playerPowerRecords).getPowerLevel());
                                 try {
-                                    sendAllPlayersInFactionMessage(faction, ChatColor.GREEN + player.getName() + " has joined " + faction.getName());
+                                    sendAllPlayersInFactionMessage(faction, ChatColor.GREEN + player.getName() + " присоединился " + faction.getName());
                                 } catch (Exception ignored) {
 
                                 }
                                 if (player.isOnline()) {
-                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "You were forced to join the faction " + faction.getName() + "!");
+                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "Вы были вынуждены присоединиться к фракции " + faction.getName() + "!");
                                 }
-                                sender.sendMessage(ChatColor.GREEN + "Success! Player was forced to join faction.");
+                                sender.sendMessage(ChatColor.GREEN + "Успех! Игрок был вынужден присоединиться к фракции.");
                                 return true;
                             }
                             else {
-                                sender.sendMessage(ChatColor.RED + "That player is already in a faction, sorry!");
+                                sender.sendMessage(ChatColor.RED + "Этот игрок уже состоит во фракции, извините!");
                                 return false;
                             }
                         }
                         else {
-                            sender.sendMessage(ChatColor.RED + "That faction wasn't found!");
+                            sender.sendMessage(ChatColor.RED + "Эта фракция не найдена!");
                             return false;
                         }
                     }
                 }
-                sender.sendMessage(ChatColor.RED + "Player not found!");
+                sender.sendMessage(ChatColor.RED + "Игрок не найден!");
                 return false;
             }
 
             // send usage
-            sender.sendMessage(ChatColor.RED + "Usage: /mf force join 'player' 'faction'");
+            sender.sendMessage(ChatColor.RED + "Использование: /mf force join 'игрок' 'фракция'");
             return false;
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.join'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.join'");
             return false;
         }
     }
@@ -236,7 +236,7 @@ public class ForceCommand {
                     if (player.getName().equalsIgnoreCase(playerName)) {
                         for (Faction faction : main.factions) {
                             if (faction.isOwner(player.getUniqueId())) {
-                                sender.sendMessage(ChatColor.RED + "Cannot forcibly kick an owner from their faction! Try disbanding the faction!");
+                                sender.sendMessage(ChatColor.RED + "Невозможно принудительно исключить владельца из его фракции! Попробуйте распустить фракцию!");
                                 return false;
                             }
 
@@ -244,7 +244,7 @@ public class ForceCommand {
                                 faction.removeMember(player.getUniqueId(), getPlayersPowerRecord(player.getUniqueId(), main.playerPowerRecords).getPowerLevel());
 
                                 if (player.isOnline()) {
-                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "You were forcibly kicked from the faction " + faction.getName() + "!");
+                                    Bukkit.getPlayer(player.getUniqueId()).sendMessage(ChatColor.AQUA + "Вас насильно выгнали из фракции " + faction.getName() + "!");
                                 }
 
                                 if (faction.isOfficer(player.getUniqueId())) {
@@ -255,16 +255,16 @@ public class ForceCommand {
                     }
                 }
 
-                sender.sendMessage(ChatColor.GREEN + "Success! If the player was in a faction, they are no longer a member.");
+                sender.sendMessage(ChatColor.GREEN + "Успех! Если игрок был во фракции, он больше не член.");
                 return true;
             }
             else {
-                sender.sendMessage(ChatColor.RED + "Usage: /mf force kick (player)");
+                sender.sendMessage(ChatColor.RED + "Использование: /mf force kick (игрок)");
                 return false;
             }
         }
         else {
-            sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.kick'");
+            sender.sendMessage(ChatColor.RED + "Сожалею! Для использования этой команды вам потребуется следующее разрешение: 'mf.force.kick'");
             return false;
         }
     }
@@ -278,7 +278,7 @@ public class ForceCommand {
                 ArrayList<String> singleQuoteArgs = main.utilities.getArgumentsInsideSingleQuotes(args);
 
                 if (singleQuoteArgs.size() < 2) {
-                    sender.sendMessage(ChatColor.RED + "Player and desired power must be designated inside single quotes!");
+                    sender.sendMessage(ChatColor.RED + "Игрок и желаемая сила должны быть указаны в одинарных кавычках!");
                     return false;
                 }
 
@@ -288,19 +288,19 @@ public class ForceCommand {
                 try {
                     desiredPower = Integer.parseInt(singleQuoteArgs.get(1));
                 } catch (Exception e) {
-                    sender.sendMessage(ChatColor.RED + "Desired power must be a number!");
+                    sender.sendMessage(ChatColor.RED + "Желаемая мощность должна быть числом!");
                     return false;
                 }
 
                 PlayerPowerRecord record = getPlayersPowerRecord(findUUIDBasedOnPlayerName(player), main.playerPowerRecords);
 
                 record.setPowerLevel(desiredPower);
-                sender.sendMessage(ChatColor.GREEN + "The power level of '" + player + "' has been set to " + desiredPower);
+                sender.sendMessage(ChatColor.GREEN + "Уровень мощности '" + player + "'был установлен на " + desiredPower);
                 return true;
             }
 
             // send usage
-            sender.sendMessage(ChatColor.RED + "Usage: /mf force power 'player' 'number'");
+            sender.sendMessage(ChatColor.RED + "Использование: /mf force power 'игрок' 'номер'");
             return false;
         } else {
             sender.sendMessage(ChatColor.RED + "Sorry! You need the following permission to use this command: 'mf.force.power'");
