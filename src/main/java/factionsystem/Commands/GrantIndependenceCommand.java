@@ -39,32 +39,32 @@ public class GrantIndependenceCommand {
                                     playersFaction.removeVassal(targetFaction.getName());
 
                                     // inform all players in that faction that they are now independent
-                                    main.utilities.sendAllPlayersInFactionMessage(targetFaction, ChatColor.GREEN + "" + targetFactionName + " has granted your faction independence!");
+                                    main.utilities.sendAllPlayersInFactionMessage(targetFaction, ChatColor.GREEN + "" + targetFactionName + " предоставил вашей фракции независимость!");
 
                                     // inform all players in players faction that a vassal was granted independence
-                                    main.utilities.sendAllPlayersInFactionMessage(playersFaction, ChatColor.GREEN + "" + targetFactionName + " is no longer a vassal faction!");
+                                    main.utilities.sendAllPlayersInFactionMessage(playersFaction, ChatColor.GREEN + "" + targetFactionName + " больше не вассальная фракция!");
                                 }
                                 else {
-                                    player.sendMessage(ChatColor.RED + "That faction isn't a vassal of yours!");
+                                    player.sendMessage(ChatColor.RED + "Эта фракция не является вашим вассалом!");
                                 }
 
                             }
                             else {
-                                player.sendMessage(ChatColor.RED + "You must be the owner of your faction to use this command!");
+                                player.sendMessage(ChatColor.RED + "Чтобы использовать эту команду, вы должны быть владельцем своей фракции!");
                             }
                         }
                         else {
-                            player.sendMessage(ChatColor.RED + "You must be in a faction to use this command!");
+                            player.sendMessage(ChatColor.RED + "Вы должны состоять в фракции, чтобы использовать эту команду!");
                         }
                     }
                     else {
                         // faction doesn't exist, send message
-                        player.sendMessage(ChatColor.RED + "Sorry! That faction doesn't exist!");
+                        player.sendMessage(ChatColor.RED + "Сожалею! Эта фракция не существует!");
                     }
 
                 }
                 else {
-                    player.sendMessage(ChatColor.RED + "Usage: /mf grantindependence (faction-name)");
+                    player.sendMessage(ChatColor.RED + "Использование: /mf grantindependence (имя фракции)");
                 }
 
             }
