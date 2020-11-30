@@ -40,7 +40,7 @@ public class InfoCommand {
                     }
                 }
                 if (!exists) {
-                    player.sendMessage(ChatColor.RED + "Эта фракция не найдена!");
+                    player.sendMessage(ChatColor.RED + "Эта фракция не найдена");
                 }
             }
         }
