@@ -34,26 +34,26 @@ public class JoinCommand {
                                 faction.addMember(player.getUniqueId(), getPlayersPowerRecord(player.getUniqueId(), main.playerPowerRecords).getPowerLevel());
                                 faction.uninvite(player.getUniqueId());
                                 try {
-                                    sendAllPlayersInFactionMessage(faction, ChatColor.GREEN + player.getName() + " has joined " + faction.getName());
+                                    sendAllPlayersInFactionMessage(faction, ChatColor.GREEN + player.getName() + " присоединился к" + faction.getName());
                                 } catch (Exception ignored) {
 
                                 }
-                                player.sendMessage(ChatColor.GREEN + "You joined the faction!");
+                                player.sendMessage(ChatColor.GREEN + "Вы вступили во фракцию!");
                                 return true;
                             }
                             else {
-                                player.sendMessage(ChatColor.RED + "You're already in a faction, sorry!");
+                                player.sendMessage(ChatColor.RED + "Вы уже во фракции, извините!");
                                 return false;
                             }
 
                         } else {
-                            player.sendMessage(ChatColor.RED + "You're not invited to this faction!");
+                            player.sendMessage(ChatColor.RED + "Вы не приглашены в эту фракцию!");
                             return false;
                         }
                     }
                 }
             } else {
-                player.sendMessage(ChatColor.RED + "Usage: /mf join (faction-name)");
+                player.sendMessage(ChatColor.RED + "Использование: /mf join (имя фракции)");
                 return false;
             }
         }
